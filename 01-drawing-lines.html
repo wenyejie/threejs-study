@@ -8,9 +8,58 @@
 <html lang="zh-cn">
 <head>
   <meta charset="utf-8">
-  <title>Title</title>
+  <title>Drawing lines</title>
+  <style>
+    body {
+      margin: 0;
+    }
+    canvas {
+      width: 100vh;
+      height: 100vw;
+    }
+  </style>
 </head>
 <body>
+  <div id="app"></div>
+  <script src="./src/three.js"></script>
+  <script type="module">
 
+  // 渲染器
+  const renderer = new THREE.WebGLRenderer()
+
+  // 设置渲染器的尺寸
+  renderer.setSize(window.innerWidth, window.innerHeight)
+
+  // 把canvas画布载入页面
+  const $app = document.querySelector('#app')
+  $app.appendChild(renderer.domElement)
+
+  // 配置并生成相机
+  const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 500)
+
+  // 定位相机
+  camera.position.set(0, 0, 100)
+  camera.lookAt(0, 0, 0)
+
+  // 生成场景
+  const scene = new THREE.Scene()
+
+  // 生成一个白色线条
+  const material = new THREE.LineBasicMaterial({ color: 0xffffff })
+
+  const geometry = new THREE.Geometry()
+  geometry.vertices.push(new THREE.Vector3(-10, 0, 0))
+  geometry.vertices.push(new THREE.Vector3(0, 10, 0))
+  geometry.vertices.push(new THREE.Vector3(10, 0, 0))
+  geometry.vertices.push(new THREE.Vector3(0, -10, 0))
+
+  const line = new THREE.Line(geometry, material)
+
+  // 把线条加入场景重
+  scene.add(line)
+
+  // 使用渲染器渲染场景并使用相机
+  renderer.render(scene, camera)
+  </script>
 </body>
 </html>

@@ -8,7 +8,7 @@
 <html lang="zh-cn">
 <head>
   <meta charset="utf-8">
-  <title>Template Title</title>
+  <title>Creating text</title>
   <style>
     body {
       margin: 0;
@@ -20,12 +20,31 @@
   </style>
 </head>
 <body>
-  <div id="app"></div>
+  <div id="app">
+  </div>
+
   <script src="./src/three.js"></script>
   <script type="module">
   import renderer from './src/renderer.js'
   import camera from './src/camera.js'
   import scene from './src/scene.js'
+
+  var material = new THREE.LineBasicMaterial({
+    vertexColors: true
+  })
+
+  var geometry = new THREE.Geometry()
+  geometry.vertices.push(
+    new THREE.Vector3(-10, 0, 0),
+    new THREE.Vector3(0, 10, 0)
+  )
+
+  geometry.colors.push(new THREE.Color(0x000000), new THREE.Color(0xffffff))
+
+  var line = new THREE.Line(geometry, material)
+  scene.add(line)
+
+  renderer.render(scene, camera)
   </script>
 </body>
 </html>

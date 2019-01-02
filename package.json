@@ -1,0 +1,27 @@
+{
+  "name": "threejs-study",
+  "version": "1.0.0",
+  "description": "学习three.js",
+  "main": "index.js",
+  "dependencies": {
+    "three": "^0.99.0"
+  },
+  "devDependencies": {
+    "express": "^4.16.4",
+    "http-proxy-middleware": "^0.19.0"
+  },
+  "scripts": {
+    "serve": "node ./serve",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wenyejie/threejs-study.git"
+  },
+  "author": "wenyejie <wenyejie@foxmail.com> (https://github.com/wenyejie)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wenyejie/threejs-study/issues"
+  },
+  "homepage": "https://github.com/wenyejie/threejs-study#readme"
+}

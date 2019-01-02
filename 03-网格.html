@@ -1,0 +1,71 @@
+<!doctype html>
+<!--
+ - Template Title
+ -
+ - @author: Storm
+ - @date: 2018-12-29
+ -->
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <title>03-网格</title>
+  <style>
+    body {
+      margin: 0;
+    }
+    canvas {
+      width: 100vw;
+      height: 100vh;
+    }
+  </style>
+</head>
+<body>
+  <div id="app"></div>
+  <script src="./src/three.js"></script>
+  <script type="module">
+  const renderer = new THREE.WebGLRenderer({
+    antialias: true
+  })
+
+  // 设置渲染器的尺寸
+  renderer.setSize(window.innerWidth, window.innerHeight)
+
+  // 把canvas画布载入页面
+  const $app = document.querySelector('#app')
+  $app.appendChild(renderer.domElement)
+
+  renderer.setClearColor(0xffffff, 1)
+
+  const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 10000)
+  camera.position.set(0, 0, 100)
+  camera.lookAt(0, 0, 0)
+
+  const scene = new THREE.Scene()
+
+  const light = new THREE.DirectionalLight(0xff0000, 1, 0)
+  light.position.set(100, 100, 200)
+  scene.add(light)
+
+  const geometry = new THREE.Geometry()
+  geometry.vertices.push(new THREE.Vector3(-500, 0, 0))
+  geometry.vertices.push(new THREE.Vector3(500, 0, 0))
+
+  let line
+
+  for (let i = 0; i <= 0; i++) {
+
+    line = new THREE.Line(geometry, new THREE.LineBasicMaterial({ color: 0x000000, opacity: 0.2 }))
+    line.position.y = 0
+    scene.add(line)
+
+    line = new THREE.Line(geometry, new THREE.LineBasicMaterial({ color: 0x000000, opacity: 0.2 }))
+    line.position.x = i * 50
+    line.rotation.y = 90 * Math.PI / 180
+    scene.add(line)
+
+  }
+
+  renderer.render(scene, camera)
+  </script>
+</body>
+</html>
